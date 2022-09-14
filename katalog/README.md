@@ -7,7 +7,7 @@ sidebar_label: Tugas 2
 Nama : Muhammad Adryan Haska Putra
 NPM  : 2106750641
 
-aplikasi heroku  : <LINK>
+aplikasi heroku  : https://tugas2-pbp-adryan.herokuapp.com/katalog/
 ---
 
 ## Pertanyaan
