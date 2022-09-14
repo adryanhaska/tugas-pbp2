@@ -13,7 +13,7 @@ aplikasi heroku  : <LINK>
 ## Pertanyaan
 
 ### Buatlah bagan yang berisi _request client_ ke web aplikasi berbasis Django beserta responnya dan jelaskan pada bagan tersebut kaitan antara `urls.py`, `views.py`, `models.py`, dan berkas `html`; 
-(https://drive.google.com/file/d/1jQgckIBEwxb3BHTRucCZebqqnvAU2hrs/view?usp=sharing)
+![bagan](https://i.postimg.cc/Bn2QRR9P/Screen-Shot-2022-09-14-at-23-12-59.png)
 
 ### Jelaskan kenapa menggunakan _virtual environment_? Apakah kita tetap dapat membuat aplikasi web berbasis Django tanpa menggunakan _virtual environment_?
 Virtual environment (Linkungan virtual) adalah environment yang digunakan oleh Django untuk menjalankan aplikasi, Virtual environment memungkinkan kita untuk memisahkan atau mengisolasi pengaturan dan package yang diinstall pada setiap projek Django sehingga perubahan yang dilakukan pada satu projek tidak akan memengaruhi projek lainnya, sehingga penggunaan virtual environment sangan disarankan.
