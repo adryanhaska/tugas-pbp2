@@ -5,6 +5,7 @@ sidebar_label: Tugas 2
 # Tugas 2: Pengenalan Aplikasi Django dan Models View Template (MVT) pada Django
 
 Nama : Muhammad Adryan Haska Putra
+
 NPM  : 2106750641
 
 aplikasi heroku  : https://tugas2-pbp-adryan.herokuapp.com/katalog/
