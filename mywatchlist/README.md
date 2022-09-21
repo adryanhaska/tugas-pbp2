@@ -2,7 +2,7 @@
 sidebar_label: Tugas 3
 ---
 
-# Tugas 2: Pengimplementasian Data Delivery Menggunakan Django
+# Tugas 3: Pengimplementasian Data Delivery Menggunakan Django
 
 Nama : Muhammad Adryan Haska Putra
 
