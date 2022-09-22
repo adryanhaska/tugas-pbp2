@@ -1,5 +1,10 @@
 from django.urls import path
-from mywatchlist.views import show_mywatchlist, show_html, show_json, show_json_by_id, show_xml, show_xml_by_id
+from mywatchlist.views import show_mywatchlist
+from mywatchlist.views import importshow_html 
+from mywatchlist.views import show_json
+from mywatchlist.views import show_json_by_id
+from mywatchlist.views import show_xml
+from mywatchlist.views import show_xml_by_id
 
 app_name = 'mywatchlist'
 
