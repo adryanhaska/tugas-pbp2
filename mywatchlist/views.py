@@ -1,4 +1,6 @@
 from django.shortcuts import render
+
+# Create your views here.
 from mywatchlist.models import MyWatchList
 from django.http import HttpResponse
 from django.core import serializers
@@ -46,5 +48,3 @@ def show_xml(request):
 def show_xml_by_id(request, id):
     data = MyWatchList.objects.filter(pk=id)
     return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
-
-
