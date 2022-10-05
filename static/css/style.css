@@ -1,0 +1,91 @@
+
+
+.form-help {
+    font-size: 11px;
+    padding-bottom: 7px;
+    color: azure;
+    opacity: 0.50;
+}
+
+
+body {
+    background: #6a11cb;
+    background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+    background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
+}
+
+.login{
+    color: azure;
+    font-weight: 600;
+}
+
+.link {
+    font-weight: bold;
+    text-decoration: none;
+    color: rgb(190, 190, 190);
+}
+
+.link:hover{
+    color: aliceblue;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+
+h1 {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.n-text {
+    padding-top: 10px;
+}
+
+.title {
+    font-weight: bold;
+}
+
+.n-input {
+    width: 350px;
+}
+
+.date {
+    font-size: small;
+    opacity: 50%;
+}
+
+
+.column {
+    float: left;
+    width: 33.33%;
+}
+  
+.columns:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.status {
+    font-size: small;
+    opacity: 70%;
+}
+
+.card:hover{ 
+    box-shadow: 10px 15px 25px #1d043b;
+   -webkit-transition:  box-shadow 
+}
+
+@media screen and (max-width: 845px) {
+    .column {
+      width: 100%;
+      text-align: center;
+    }
+}
+
+.navbar {
+    padding: 15%;
+}

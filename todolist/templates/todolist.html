@@ -1,47 +1,79 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block content %}
 
-{% block content %}
-<h1>{{user}}'s To Do List </h1>
+<nav class="navbar bg-light title">
+  <form class="container-fluid form-inline">
+    <a class="navbar-brand">{{user}}</a>
+    <button class="btn btn-danger" type="button">
+      <a href="{% url 'todolist:logout' %}" class="link">Logout</a>
+    </button>
+  </form>
+  <br />
+</nav>
 
 {% if todolist %}
-<table border="2">
-    <tr>
-      <th>Tanggal Pembuatan</th>
-      <th>Judul</th>
-      <th>Deskripsi</th>
-      <th>Status</th>
-      <th>Hapus</th>
-    </tr>
-    {% for task in todolist %}
-    <tr>
-      <th>{{task.date}}</th>
-      <th>{{task.title}}</th>
-      <th>{{task.description}}</th>
-      <th>
-        {% if task.is_finished == False %}
-          Belum Selesai
-            <button>
-                <a href="done/{{task.pk}}">⬜</a>
+<div
+  class="d-flex flex-column justify-content-center align-items-center gradient-custom"
+>
+  <br />
+  <br />
+  <h1 class="login">{{user}}'s To Do List</h1>
+  <br />
+  {% for task in todolist %}
+  <br />
+  <div class="card" style="width: 50%">
+    <div class="card-body">
+      <h5 class="card-title">{{task.title}}</h5>
+      <p class="card-text">{{task.description}}</p>
+      <div class="columns">
+        <div class="column" style="padding-top: 5px">
+          <p class="date">date {{task.date}}</p>
+        </div>
+        <div class="column status">
+          {% if task.is_finished == False %}
+          <p style="color: #c40c06">
+            Belum Selesai
+            <button class="btn">
+              <a href="done/{{task.pk}}" style="text-decoration: none">⬜</a>
             </button>
-        {% else %}
-          Selesai
-             <button>
-                <a href="not_done/{{task.pk}}">✅</a>
-            </button>    
-        {% endif %}
-      <th>
-        <button>
-            <a href="delete/{{task.pk}}">Hapus</a>
-        </button>
-    </th>
-    </tr>
-    {% endfor %}
-  </table>
+          </p>
 
-{% else %}
-  <h4>Tidak ada Task, silahkan tambah task baru</h4>
-{% endif %}
-<button><a href="{% url 'todolist:create_task' %}">Tambah Task Baru</a></button>
-<button><a href="{% url 'todolist:logout' %}">Logout</a></button>  
+          {% else %}
+          <p style="color: #2ed914">
+            Selesai&emsp;&emsp;&emsp;&nbsp;<button class="btn">
+              <a href="not_done/{{task.pk}}">✅</a>
+            </button>
+          </p>
+          {% endif %}
+        </div>
+        <div class="column" style="padding-left: 5%">
+          <button class="btn btn-outline-danger">
+            <a href="delete/{{task.pk}}" class="link">Hapus</a>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+  <br />
+  <br />
 
+  <button class="btn btn-dark" type="button" style="width: 30%">
+    <a href="{% url 'todolist:create_task' %}" class="link">Tambah Task Baru</a>
+  </button>
+
+  <br />
+  <br />
+  <br />
+  <br />
+
+  {% else %}
+  <div class="center d-flex flex-column justify-content-center align-items-center">
+  <h4 class="login">Tidak ada Task, silahkan tambah task baru</h4>
+  <br>
+  <button class="btn btn-dark" type="button" style="width: 20%">
+    <a href="{% url 'todolist:create_task' %}" class="link">Tambah Task Baru</a>
+  </button>
+</div>
+  {% endif %}
+</div>
 {% endblock content %}

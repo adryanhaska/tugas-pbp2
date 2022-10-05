@@ -1,22 +1,46 @@
-{% extends 'base.html' %}
-
-{% block meta %}
+{% extends 'base.html' %} {% block meta %}
 <title>Login</title>
-{% endblock meta %}
+{% endblock meta %} {% block content %}
 
-{% block content %}
-
-<h1>Create New Task</h1>
-
-<form method="POST" action="">
+<div
+  class="login center d-flex flex-column justify-content-center align-items-center"
+>
+  <h1>Create New Task</h1>
+  <br>
+  <form
+    method="POST"
+    action=""
+    class="d-flex flex-column justify-content-center"
+  >
     {% csrf_token %}
-    <table>
-        {{ form.as_table }}
-        <tr>
-            <td></td>
-            <td><input type="submit" value="Tambahkan Task"></td>
-        </tr>
-    </table>
-</form>
+    <div class="mb-3">
+      <label for="exampleInputTitle" class="form-label"
+        >{{ form.title.label }}:</label
+      >
+      <input
+        class="form-control n-input"
+        type="title"
+        name="title"
+        placeholder="Title"
+        style="width: 350px"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputDescription" class="form-label"
+        >{{ form.description.label }}:</label
+      >
+      <input
+        class="form-control n-input"
+        type="description"
+        name="description"
+        placeholder="Description"
+        style="width: 350px"
+      />
+    </div>
+    <div>
+      <input type="submit" value="Tambahkan Task" class="btn btn-dark n-input" />
+    </div>
+  </form>
+</div>
 
 {% endblock content %}
