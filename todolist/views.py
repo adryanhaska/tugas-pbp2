@@ -18,6 +18,7 @@ def show_todolist(request):
     user_logged_in = request.user
     task = Task.objects.filter(user=user_logged_in)
     context = {
+        'len_todolist': len(task),
         'todolist': task,
         'user': user_logged_in,
     }
