@@ -60,10 +60,8 @@ def login_user(request):
         password = request.POST.get('password')
         user = authenticate(request, username=username, password=password)
         if user is not None:
-            login(request, user) # melakukan login terlebih dahulu
-            response = HttpResponseRedirect(reverse("todolist:show_todolist")) # membuat response
-            response.set_cookie('last_login', str(datetime.datetime.now())) # membuat cookie last_login dan menambahkannya ke dalam response
-            return response
+            login(request, user)
+            return redirect("todolist:show_todolist")
         else:
             messages.info(request, 'Username atau Password salah!')
     context = {}
