@@ -10,6 +10,9 @@ from django.contrib.auth.decorators import login_required
 import datetime
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.http import HttpResponse, HttpResponseNotFound
+from django.core import serializers
+from django.http.response import JsonResponse
 
 # Create your views here.
 
@@ -24,6 +27,20 @@ def show_todolist(request):
     }
     return render(request, 'todolist.html', context)
 
+def get_todolist_json(request):
+    tasks = Task.objects.filter(user=request.user)
+    return HttpResponse(serializers.serialize('json', tasks), content_type='application/json')
+
+@login_required(login_url='/todolist/login')
+def add_todolist_item(request):
+    if request.method == 'POST':
+        judul = request.POST.get('title')
+        deskripsi = request.POST.get('description')
+        new_task = Task(user=request.user, title=judul, description=deskripsi)
+        new_task.save()
+        return HttpResponse(b"CREATED", status=201)
+    return HttpResponseNotFound()
+
 def register(request):
     form = UserCreationForm()
 
@@ -36,7 +53,7 @@ def register(request):
     
     context = {'form':form}
     return render(request, 'register.html', context)
-
+    
 def login_user(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -74,28 +91,21 @@ def create_task(request):
     # if a GET (or any other method) we'll create a blank form
     else:
         form = TaskForm()
-
     return render(request, 'create-task.html', {'form': form})
 
-@login_required(login_url='/todolist/login/')
-def not_done_task(request, id):
-    user = request.user
-    TaskData = Task.objects.filter(user=user).get(pk=id)
-    TaskData.is_finished = False
-    TaskData.save()
-    return HttpResponseRedirect(reverse("todolist:show_todolist")) 
-
-@login_required(login_url='/todolist/login/')
-def done_task(request, id):
-    user = request.user
-    TaskData = Task.objects.filter(user=user).get(pk=id)
-    TaskData.is_finished = True
-    TaskData.save()
-    return HttpResponseRedirect(reverse("todolist:show_todolist")) 
+@login_required(login_url='/todolist/login')
+def update_task(request, id):
+    task = Task.objects.get(pk=id)
+    if task.is_finished:
+        task.is_finished = False
+    else:
+        task.is_finished = True
+    task.save()
+    return HttpResponseRedirect("/todolist/")
 
 @login_required(login_url='/todolist/login/')
 def delete_task(request, id):
     user = request.user
     TaskData = Task.objects.filter(user=user).get(pk=id)
     TaskData.delete()
-    return HttpResponseRedirect(reverse("todolist:show_todolist")) 
+    return JsonResponse({"instance": "Task Dihapus"}, status=200) 

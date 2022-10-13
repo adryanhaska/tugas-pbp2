@@ -1,4 +1,111 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} {% load static %} {% block meta %}
+
+<script>
+  function show(data) {
+    let content = "";
+    for (let i = 0; i < data.length; i++) {
+      let message = data[i].fields.is_finished ? "Selesai" : "Belum Selesai";
+      let button = data[i].fields.is_finished ? "✅" : "⬜";
+      let color = data[i].fields.is_finished ? "green" : "red";
+      content += `
+              <br />
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">${data[i].fields.title}</h5>
+                  <p class="card-text">${data[i].fields.description}</p>
+                  <div class="columns">
+                    <div class="column" style="padding-top: 5px">
+                      <p class="date">date ${data[i].fields.date}</p>
+                    </div>
+                    <div class="column status">
+                      <p style="color: ${color}">
+                        ${message}
+                        <button class="btn">
+                          <a href="update/${data[i].pk}" style="text-decoration: none">${button}</a>
+                        </button>
+                      </p>
+                    </div>
+
+                    <div class="column" style="padding-left: 5%">
+                      <button class="btn btn-outline-danger" onClick={deleteData(${data[i].pk})}>
+                        Hapus
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        `;
+      $(".content").html(content);
+    }
+  }
+
+  // GET
+  $(document).ready(function () {
+    $(".modal").hide();
+    $(".backdrop").hide();
+    $.get("/todolist/json/", function (data, status) {
+      show(data);
+    });
+  });
+
+  // Add button
+  $(document).ready(function () {
+    $(".add-task").click(function () {
+      $(".modal").toggle();
+      $(".backdrop").toggle();
+    });
+  });
+
+  // click button
+  $(document).ready(function () {
+    $(".add-task-button").click(function () {
+      let judul = $(".title-c").val();
+      let deskripsi = $(".description").val();
+      let CSRFtoken = $('input[name="csrfmiddlewaretoken"]').val();
+      $.post(
+        "/todolist/add/",
+        {
+          title: judul,
+          description: deskripsi,
+          csrfmiddlewaretoken: CSRFtoken,
+        },
+        function () {
+          $(".modal").hide();
+          $(".backdrop").hide();
+          $.get("/todolist/json/", function (data, status) {
+            show(data);
+          });
+        }
+      );
+    });
+  });
+
+  // modal backdrop
+  $(document).ready(function () {
+    $(".backdrop").click(function () {
+      $(".modal").hide();
+      $(".backdrop").hide();
+    });
+  });
+
+
+  // Delete
+  function deleteData(id) {
+    $.ajax({
+      type: "POST",
+      url: `delete/${id}`,
+      data: { csrfmiddlewaretoken: "{{ csrf_token }}" },
+      dataType: "json",
+      success: function () {
+        $.get("/todolist/json/", function (data, status) {
+            show(data);
+          });
+      },
+    });
+  }
+</script>
+
+{% endblock meta %} {% block content %}
 
 <nav class="navbar bg-light title">
   <form class="container-fluid form-inline">
@@ -10,70 +117,73 @@
   <br />
 </nav>
 
-{% if len_todolist > 0 %}
-<div
-  class="d-flex flex-column justify-content-center align-items-center gradient-custom"
->
-  <br />
-  <br />
+<div class="d-flex flex-column justify-content-center align-items-center">
+  <br /><br />
   <h1 class="login">{{user}}'s To Do List</h1>
   <br />
-  {% for task in todolist %}
-  <br />
-  <div class="card" style="width: 50%">
-    <div class="card-body">
-      <h5 class="card-title">{{task.title}}</h5>
-      <p class="card-text">{{task.description}}</p>
-      <div class="columns">
-        <div class="column" style="padding-top: 5px">
-          <p class="date">date {{task.date}}</p>
-        </div>
-        <div class="column status">
-          {% if task.is_finished == False %}
-          <p style="color: #c40c06">
-            Belum Selesai
-            <button class="btn">
-              <a href="done/{{task.pk}}" style="text-decoration: none">⬜</a>
-            </button>
-          </p>
+  <div class="content" style="width: 50%"></div>
+  <br /><br />
+  <button class="add-task btn btn-dark" type="button" style="width: 30%">
+    Tambah Task Baru
+  </button>
 
-          {% else %}
-          <p style="color: #2ed914">
-            Selesai&emsp;&emsp;&emsp;&nbsp;<button class="btn">
-              <a href="not_done/{{task.pk}}">✅</a>
-            </button>
-          </p>
-          {% endif %}
-        </div>
-        <div class="column" style="padding-left: 5%">
-          <button class="btn btn-outline-danger">
-            <a href="delete/{{task.pk}}" class="link">Hapus</a>
-          </button>
-        </div>
+  <div class="backdrop"></div>
+  <br /><br /><br /><br />
+
+  <div
+    class="modal"
+    style="
+      background: rgb(2, 0, 36);
+      background: linear-gradient(
+        90deg,
+        rgba(2, 0, 36, 1) 0%,
+        rgba(106, 17, 203, 0.836594012605042) 100%,
+        rgba(0, 212, 255, 1) 100%
+      );
+    "
+  >
+    <div
+      class="center d-flex flex-column justify-content-center align-items-center"
+    >
+      {% csrf_token %}
+      <h1 class="text-2xl font-bold mb-4" style="color: white">ADD NEW TASK</h1>
+      <div class="mb-3">
+        <label for="exampleInputTitle" class="judul" style="color: white"
+          >Title:</label
+        >
+        <input
+          class="title-c form-control n-input"
+          type="title-c"
+          name="title-c"
+          placeholder="Title"
+          style="width: 350px"
+          autocomplete="off"
+        />
+      </div>
+      <div class="mb-3">
+        <label
+          for="exampleInputDescription"
+          class="deskripsi"
+          style="color: white"
+          >Description:</label
+        >
+        <input
+          class="description form-control n-input"
+          type="description"
+          name="description"
+          placeholder="Description"
+          style="width: 350px"
+          autocomplete="off"
+        />
+      </div>
+      <div>
+        <input
+          type="submit"
+          value="Tambahkan Task"
+          class="add-task-button btn btn-dark n-input"
+        />
       </div>
     </div>
   </div>
-  {% endfor %}
-  <br />
-  <br />
-
-  <button class="btn btn-dark" type="button" style="width: 30%">
-    <a href="{% url 'todolist:create_task' %}" class="link">Tambah Task Baru</a>
-  </button>
-
-  <br />
-  <br />
-  <br />
-  <br />
-
-  {% else %}
-  <div class="center d-flex flex-column justify-content-center align-items-center">
-  <h4 class="login">Tidak ada Task, silahkan tambah task baru</h4>
-  <br>
-  <button class="btn btn-dark" type="button" style="width: 20%">
-    <a href="{% url 'todolist:create_task' %}" class="link">Tambah Task Baru</a>
-  </button>
-</div>
-  {% endif %}
 </div>
 {% endblock content %}
