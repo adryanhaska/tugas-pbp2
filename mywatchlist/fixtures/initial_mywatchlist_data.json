@@ -1,0 +1,112 @@
+[
+    {
+        "model":"mywatchlist.mywatchlist",
+        "pk":1,
+        "fields":{
+            "watched":true,
+            "title":"Iron Man",
+            "rating": 7.9,
+            "release_date":"May 2, 2008",
+            "review":"Great movie, which serves as a perfect introduction to Tony Stark's character.Robert Downey jr was perfect to play Tony Stark and the movie was really good with a good story and great build up. Perfect start to the marvel world we know and love. unfortunately the antagonist was a bit boring, but except for that, I loved the movie!"
+        }
+    },
+    {
+        "model":"mywatchlist.mywatchlist",
+        "pk":2,
+        "fields":{
+            "watched":false,
+            "title":"The Incredible Hulk",
+            "rating": 6.6,
+            "release_date":"June 13, 2008",
+            "review":"After the original Hulk i was eager to see this one and just like the original i wasn't disappointed, this movie is definitely worth it in my book, and will always be found in my collection, this might is my second favorite marvel movie behind The Punisher and just ahead of Hulk, if you want great entertainment, you've got great entertainment, The Incredible Hulk is a blast from the groundbreaking beginning to the glued-to-your seat ending, i highly recommend this film."
+        }
+    },
+    {
+        "model":"mywatchlist.mywatchlist",
+        "pk":3,
+        "fields":{
+            "watched":true,
+            "title":"Iron Man 2",
+            "rating": 6.9,
+            "release_date":"May 7, 2010",
+            "review":"It isn't as good as the original but Iron Man 2 is still a really good sequel. Robert Downey Jr. once again gives an incredible performance and is extremely charismatic. Gwyneth Paltrow, Don Cheadle, Scarlett Johansson, Samuel L. Jackson and Sam Rockwell all give great performances. Jon Favreau's direction is really good and it's consistently funny. The CG is impressive and the music by John Denney is good. However, Mickey Rourke is wasted as a forgettable villain and the final battle is a little short."
+        }
+    },
+    {
+        "model":"mywatchlist.mywatchlist",
+        "pk":4,
+        "fields":{
+            "watched":true,
+            "title":"Thor",
+            "rating": 7.0,
+            "release_date":"May 6, 2011",
+            "review":"This is a movie that stands very differently with a lot of people, but to me, it is a very entertaining and well-directed film about a God needs to learn what it means to be a man. Kenneth Branagh is a visionary and every single shot in this movie is beautifully made and you get the feeling that he really put his heart and soul into this. The performances of Chris Hemsworth and Anthony Hopkins are great, but it is Tom Hiddleston's Loki that totally steals the movie."
+        }
+    },
+    {
+        "model":"mywatchlist.mywatchlist",
+        "pk":5,
+        "fields":{
+            "watched":true,
+            "title":"Captain America: The First Avenger",
+            "rating": 6.9,
+            "release_date":"July 22, 2011",
+            "review":"Great Movie! A movie full of love and a film representation taking place during World War II. I loved the casting, Chris Evans, Haylee Atwell, Tommy Lee Jones, Stanley Tucci, Sebastian Stan, Dominic Cooper and Hugo Weaving. This is a personal favorite and I think this movie is my 3rd favorite MCU (Marvel Cinematic Universe) movie. An amazing origin story, showing us who Captain America was, and how he is now. I recommend this for family movie nights, or just for fun!"
+        }
+    },
+    {
+        "model":"mywatchlist.mywatchlist",
+        "pk":6,
+        "fields":{
+            "watched":true,
+            "title":"Marvel's The Avengers",
+            "rating": 8,
+            "release_date":"May 4, 2012",
+            "review":"'Avengers Assemble' ('The Avengers') is a truly enjoyable superhero film that lives up to its hype and creates a story that allows for four of the greatest superheroes to connect in this mega-blockbuster extravaganza. Joss Whedon has created one of the most action-packed Marvel films to have graced the screen, full of humour, thrills and a great cast of characters, all of which impel this visual effects-driven spectacle. An impressive and remarkable fantastical superhero flick from Whedon."
+        }
+    },
+    {
+        "model":"mywatchlist.mywatchlist",
+        "pk":7,
+        "fields":{
+            "watched":true,
+            "title":"Iron Man 3",
+            "rating": 7.1,
+            "release_date":"May 3, 2013",
+            "review":"It was an out and out outstanding film. The story and screenplay was great. The actions scenes with the use of CGI and visual effects was extraordinary. The performances by the cast especially Robert Downey Jr was excellent. Definitely needs to be watched by all superhero movie lovers."
+        }
+    },
+    {
+        "model":"mywatchlist.mywatchlist",
+        "pk":8,
+        "fields":{
+            "watched":false,
+            "title":"Thor: The Dark World",
+            "rating": 6.8,
+            "release_date":"November 8, 2013",
+            "review":"It's a really good movie and if we look at the way Alan Taylor directs this movie, it's actually not that much different from what Branagh did back in 2011. Chris Hemsworth is good as usual and Tom Hiddleston is more wonderful than ever as Loki, but the villain Malekith, played by Christopher Eccleston, unfortunately, is a bit of a disappointment, mostly because of the lack of motivation."
+        }
+    },
+    {
+        "model":"mywatchlist.mywatchlist",
+        "pk":9,
+        "fields":{
+            "watched":true,
+            "title":"Captain America: The Winter Soldier",
+            "rating": 7.8,
+            "release_date":"April 4, 2014",
+            "review":"Captain America The Winter Soldier is a great movie, well directed, with awsome action sequences and always gripping. It boasts of a talented cast and it is even better than its predecessor. With an effective mix of thrilling action, humor, intrigue, and surprising heart, it is another great addition to the Infinity Saga."
+        }
+    },
+    {
+        "model":"mywatchlist.mywatchlist",
+        "pk":10,
+        "fields":{
+            "watched":false,
+            "title":"Guardians of the Galaxy",
+            "rating": 8,
+            "release_date":"August 1, 2014",
+            "review":"One of if not my favorite film in the marvel cinematic universe. It has a lot of funny, action packed, dramatic and definitely memorable moments. The characters where funny and likable, every single one of them. There was also good chemistry between each character. it is still one of my favorite superhero movie."
+        }
+    }
+]
